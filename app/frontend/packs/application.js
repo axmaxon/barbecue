@@ -5,7 +5,7 @@
 
 import Rails from "@rails/ujs"
 import "../styles/application.scss"
-import 'bootstrap/dist/js/bootstrap.js'
+import "bootstrap/dist/js/bootstrap.js"
 
 const images = require.context('../images/', true)
 
