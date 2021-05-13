@@ -39,45 +39,41 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <%= link_to "BBQ!", root_path, class: 'navbar-brand' %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <%= link_to "BBQ!", root_path, class: 'navbar-brand' %>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item nav-link"><%= link_to "Link1", "/path1"  %></li>
-        <li class="nav-item nav-link"><%= link_to "Link2", "/path2"  %></li>
-        <li class="nav-item nav-link"><%= link_to "Link3", "/path3"  %></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-9">
-      <%= bootstrap_flash %>
-      <%= yield %>
-    </div>
-    <div class="col-lg-3">
-      <div class="well sidebar-nav">
-        <h3>Sidebar</h3>
-        <ul class="nav nav-list">
-          <li class="nav-header">Sidebar</li>
-          <li><%= link_to "Link1", "/path1"  %></li>
-          <li><%= link_to "Link2", "/path2"  %></li>
-          <li><%= link_to "Link3", "/path3"  %></li>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item nav-link"><%= link_to 'Профиль', current_user %></li>
+            <li class="nav-item nav-link"><%= link_to 'Выйти', destroy_user_session_path,
+                            method: :delete %></li>
+          <% else %>
+            <li class="nav-item nav-link"><%= link_to 'Войти', new_user_session_path %></li>
+            <li class="nav-item nav-link"><%= link_to 'Зарегистрироваться',
+                            new_user_registration_path %></li>
+          <% end %>
         </ul>
-      </div><!--/.well -->
-    </div><!--/span-->
-  </div><!--/row-->
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <%= bootstrap_flash %>
 
-  <footer>
-    <p>&copy; Company 2021</p>
-  </footer>
+        <%= yield %>
+      </div>
+      <div class="col-lg-3">
+      </div>
+    </div>
 
-</div> <!-- /container -->
+    <footer>
+      <p>&copy; Company 2021</p>
+    </footer>
+
+  </div> <!-- /container -->
 </body>
 </html>
