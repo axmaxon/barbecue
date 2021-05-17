@@ -1,8 +1,8 @@
 <div class="event">
   <div class="event-info row">
     <div class="col-md-12">
-      <%= content_tag 'div', '', class: 'event-background',
-                      style: "background-image: url(#{asset_pack_path('media/images/event.jpg')})" %>
+      <%#= content_tag 'div', '', class: 'event-background', style: "background-image: url(#{asset_pack_path('media/images/event.jpg')})" %>
+      <div class="event-background">
       <div class="event-info-inner row">
         <div class="col-md-6">
           <div class="event-description">
@@ -15,13 +15,14 @@
 
           <% if current_user_can_edit?(@event) %>
             <div class="buffer-both">
-              <%= link_to 'Изменить', edit_event_path(@event),
+              <%= link_to 'Change', edit_event_path(@event),
                           class: 'btn btn-primary' %>
             </div>
           <% end %>
 
         </div> <!--col-md-6 -->
       </div> <!-- row -->
+      </div> <!--event-background -->
     </div> <!--col-md-12 -->
   </div> <!--event-info row -->
 </div>

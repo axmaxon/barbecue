@@ -8,6 +8,8 @@ gem 'puma', '~> 5.0'
 gem 'webpacker', '~> 5.0'
 gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'devise-i18n'
+gem 'russian'
 
 group :production do
 gem 'pg'
