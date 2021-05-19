@@ -18,6 +18,6 @@ module ApplicationHelper
   end
   def user_avatar(user)
     #todo: user real avatars
-    asset_pack_path('media/images/user.png')
+    asset_pack_path('media/images/user1.png')
   end
 end

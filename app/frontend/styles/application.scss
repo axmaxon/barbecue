@@ -1,6 +1,17 @@
 @import '~bootstrap/scss/bootstrap.scss';
-
 /* Buffers */
+.navbar-light .navbar-brand{
+  color: #f60000;
+  font-size: x-large;
+  text-decoration: underline dotted #17a2b8;
+  font-weight: bold;
+};
+
+.navbar-brand-image{
+  width: 40px;
+  height: 40px;
+}
+
 .buffer-top {
   margin-top: 20px;
 }
