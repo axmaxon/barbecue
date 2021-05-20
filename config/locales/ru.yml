@@ -21,9 +21,12 @@ ru:
 
   controllers:
     events:
+      event: 'Событие'
       created: 'Событие успешно создано!!! =)'
       updated: 'Событие изменено!! =)'
-      destroyed: 'Событие удалено! =)'
+      destroyed: 'Событие удалено! о_0'
+      deleted: 'удалено'
+
     users:
       updated: 'Ваш профиль обновлен!'
 
@@ -85,6 +88,9 @@ ru:
       new_event: 'Новое событие'
     edit:
       edit_event: 'Редактировать данные о событии'
+    destroy:
+      destroy_event: 'Удалить событие'
+      are_you_sure: 'Вы уверены?'
 
   errors:
     mistake:
