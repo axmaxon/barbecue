@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'devise-i18n'
 gem 'russian'
+gem 'rails-i18n' ,  '~> 6.0.0'
 
 group :production do
 gem 'pg'
