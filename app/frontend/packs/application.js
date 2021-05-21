@@ -6,6 +6,8 @@
 import Rails from "@rails/ujs"
 import "../styles/application.scss"
 import "bootstrap/dist/js/bootstrap.js"
+import "../scripts/datepicker.js"
+import "../scripts/datepicker.min.js"
 
 const images = require.context('../images/', true)
 

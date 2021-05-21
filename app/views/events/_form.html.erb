@@ -1,28 +1,38 @@
-<%= form_for(@event) do |f| %>
-  <%= render partial: 'partials/form_errors', locals: {model: @event} %>
+<div class="card mb-3">
+  <div class="card-body">
 
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
-  </div>
+    <%= form_for(@event) do |f| %>
+      <%= render partial: 'partials/form_errors', locals: {model: @event} %>
 
-  <div class="form-group">
-    <%= f.label :address %>
-    <%= f.text_field :address, class: 'form-control' %>
-  </div>
+      <div class="form">
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :datetime %>
-    <p><%= f.datetime_select :datetime, class: 'form-control' %></p>
-  </div>
+        <div class="form-group">
+          <%= f.label :address %>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description, class: 'form-control' %>
-  </div>
+        <div class="form-group">
+          <%= f.label :datetime %>
+          <input type="text" name="event[datetime]"
+                 class="datepicker-here form-control datetime" data-timepicker="true"
+                 data-position="right bottom" />
+        </div>
 
-  <div class="actions">
-    <%= f.submit t('users._form.save'), class: 'btn btn-info' %>
-    или <%= link_to t('users._form.back'), :back %>
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit t('users._form.save'), class: 'btn btn-info' %>
+          <%= t('users._form.or') %>
+          <%= link_to t('users._form.back'), :back %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

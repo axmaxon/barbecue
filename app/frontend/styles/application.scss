@@ -1,4 +1,6 @@
 @import '~bootstrap/scss/bootstrap.scss';
+@import 'datepicker';
+@import 'datepicker.min';
 /* Buffers */
 .navbar-light .navbar-brand{
   color: #f60000;
@@ -53,4 +55,8 @@
 .thumbnail-inner {
   padding: 20px 4px 4px;
   //border: 1px solid green;
+}
+
+.datetime{
+  width: 150px;
 }

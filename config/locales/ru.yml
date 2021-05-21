@@ -81,13 +81,16 @@ ru:
           события'
     _form:
       save: 'Cохранить'
+      or: 'или'
       back: 'Вернуться'
 
   events:
+    index:
+      index_events: 'События'
     new:
       new_event: 'Новое событие'
     edit:
-      edit_event: 'Редактировать данные о событии'
+      edit_event: 'Редактировать событие'
     destroy:
       destroy_event: 'Удалить событие'
       are_you_sure: 'Вы уверены?'
