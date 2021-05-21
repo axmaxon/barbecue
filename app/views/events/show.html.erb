@@ -16,7 +16,7 @@
             <% if current_user_can_edit?(@event) %>
               <div class="buffer-both">
                 <%= link_to t('events.edit.edit_event'), edit_event_path(@event),
-                            class: 'btn btn-primary' %>
+                            class: 'btn btn-info' %>
               </div>
               <div class="buffer-both">
                 <%= link_to t('events.destroy.destroy_event'), event_path, method: :delete,
