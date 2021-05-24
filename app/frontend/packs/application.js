@@ -8,6 +8,7 @@ import "../styles/application.scss"
 import "bootstrap/dist/js/bootstrap.js"
 import "../scripts/datepicker.js"
 import "../scripts/datepicker.min.js"
+import "@fortawesome/fontawesome-free/css/all"
 
 const images = require.context('../images/', true)
 

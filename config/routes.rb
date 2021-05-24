@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :events do
     # Вложенный ресурс комментариев
     resources :comments, only: [:create, :destroy]
+    resources :subscriptions, only: [:create, :destroy]
   end
 
   resources :users, only: [:show, :edit, :update]
