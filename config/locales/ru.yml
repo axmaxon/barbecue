@@ -30,6 +30,11 @@ ru:
     users:
       updated: 'Ваш профиль обновлен!'
 
+    comments:
+      destroyed: 'Комментарий удален'
+      created: 'Ваш комментарий добавлен'
+      error: 'Ошибка с комментарием'
+
   app:
     name: 'Шашлыки'
     company: 'AxMx-Company'
@@ -102,4 +107,8 @@ ru:
       few: 'ошибки'
       many: 'ошибок'
       other: 'ошибки'
+
+  comments:
+    comment:
+      destroy_confirm: 'Вы уверены, что хотите удалить этот комментарий?'
 
