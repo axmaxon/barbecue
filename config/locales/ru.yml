@@ -103,7 +103,11 @@ ru:
       edit_event: 'Редактировать событие'
     destroy:
       destroy_event: 'Удалить событие'
-      are_you_sure: 'Вы уверены?'
+      are_you_sure: 'Вы уверены???'
+    show:
+      i_will_go: 'Я пойду!'
+      who_invites: 'Кто зовёт:'
+      who's_coming: 'Кто пойдет:'
 
   errors:
     mistake:
@@ -116,7 +120,10 @@ ru:
   comments:
     comment:
       destroy_confirm: 'Вы уверены, что хотите удалить этот комментарий?'
+      send: 'Отправить'
 
   subscriptions:
     subscription:
       destroy_confirm: 'Вы уверены, что хотите удалить эту подписку?'
+      subscribe: 'Подписаться'
+
