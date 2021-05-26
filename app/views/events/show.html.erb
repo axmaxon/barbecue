@@ -1,10 +1,8 @@
 <div class="event">
-  <div class="event-info row">
+  <div class="event-info row mb-3 pt-1">
     <div class="col-md-12">
-      <%#= content_tag 'div', '', class: 'event-background', style: "background-image: url(#{asset_pack_path('media/images/event.jpg')})" %>
-      <div class="event-background">
         <div class="event-info-inner row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="event-description">
               <h1><%= @event.title %></h1>
               <h3><%= l @event.datetime, format: :short %></h3>
@@ -23,14 +21,12 @@
                 data: {confirm: 'Вы уверены??'}, class: 'btn btn-danger'%>
               </div>
             <% end %>
-
           </div> <!--col-md-6 -->
         </div> <!-- row -->
-      </div> <!--event-background -->
     </div> <!--col-md-12 -->
   </div> <!--event-info row -->
 
-  <div class="row">
+  <div class=" event-info row pt-3 pb-3">
     <div class="col-md-8">
       <div class="event-comments buffer-top">
         <%= render partial: 'comments/form', locals: {comment: @new_comment || @event.comments.build} %>
@@ -54,13 +50,14 @@
           </p>
         </div>
       </div>
-      <div class="event-subscription-form">
-        <h4>Я пойду:</h4>
-        <div>
-          <%= render partial: 'subscriptions/form', locals: { subscription: @new_subscription || @event.subscriptions.build } %>
+      <% unless @event.user == current_user%>
+        <div class="event-subscription-form">
+          <h4>Я пойду:</h4>
+          <div>
+            <%= render partial: 'subscriptions/form', locals: { subscription: @new_subscription || @event.subscriptions.build } %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
-
 </div>
