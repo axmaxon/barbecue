@@ -2,12 +2,8 @@ class Subscription < ApplicationRecord
   belongs_to :event
   belongs_to :user, optional: true
 
-  # Обязательно должно быть событие
-  validates :event, presence: true
-
   # Проверки user_name и user_email выполняются,
-  # только если user не задан
-  # То есть для анонимных пользователей
+  # только если user не задан (то есть для анонимных пользователей)
   validates :user_name, presence: true, unless: -> { user.present? }
   validates :user_email, presence: true, format: /\A[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\z/, unless: -> { user.present? }
 
@@ -53,7 +49,7 @@ class Subscription < ApplicationRecord
   end
 
   def email_is_not_taken
-    errors.add(:user_email, :email_is_already_taken) if User.distinct.pluck(:email).include?(user_email)
+    errors.add(:user_email, :email_is_already_taken) if User.exists?(email: user_email)
   end
 
   def downcase_email
