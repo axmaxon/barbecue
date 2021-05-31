@@ -112,6 +112,7 @@ ru:
 
 
   errors:
+    in_the_form: 'В вашей форме'
     mistake:
       zero: 'ошибок'
       one: 'ошибка'

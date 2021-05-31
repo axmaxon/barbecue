@@ -4,12 +4,12 @@
 <% if errors.any? %>
   <div class="alert alert-danger">
     <div class="lead buffer-bottom">
-      В вашей форме <%= "#{errors.count} #{I18n.t('errors.mistake', count: errors.count)}"%>
+      <%= "#{I18n.t('errors.in_the_form')} #{errors.count} #{I18n.t('errors.mistake', count: errors.count)}" %>
     </div>
 
     <ul>
       <% errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="text-break"><%= message %></li>
       <% end %>
     </ul>
   </div>
