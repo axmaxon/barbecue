@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     # Подписка может быть создана только если текущий пользователь - не автор события
-    unless @event.user == current_user
+    # unless @event.user == current_user
       # Болванка для новой подписки
       @new_subscription = @event.subscriptions.build(subscription_params)
       @new_subscription.user = current_user
@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
         # если ошибки — рендерим шаблон события
         render 'events/show', alert: I18n.t('controllers.subscriptions.error')
       end
-    end
+    # end
   end
 
   def destroy

@@ -18,6 +18,8 @@ class Subscription < ApplicationRecord
   validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
 
   # Пользователь не может подписаться на своё событие (id)
+  validate :another_user, if: -> { user.present? }
+
 
   # Если есть юзер, выдаем его имя,
   # если нет – дергаем исходный метод
@@ -28,7 +30,6 @@ class Subscription < ApplicationRecord
       super
     end
   end
-
   # Если есть юзер, выдаем его email,
   # если нет – дергаем исходный метод
   def user_email
@@ -40,9 +41,8 @@ class Subscription < ApplicationRecord
   end
 
   private
-  #my code:
-  def foreign_event
-    unless Event.find(event_id) == user_id
-    end
+
+  def another_user
+    errors.add(:user, :cannot_be_subscribed)  if user == event.user
   end
 end

@@ -17,7 +17,7 @@
                             class: 'btn btn-info' %>
               </div>
               <div class="buffer-both">
-                <%= link_to t('events.destroy.destroy_event'), event_path, method: :delete,
+                <%= link_to t('events.destroy.destroy_event'), event_path(@event), method: :delete,
                 data: {confirm: t('events.destroy.are_you_sure')}, class: 'btn btn-danger'%>
               </div>
             <% end %>
@@ -38,21 +38,24 @@
 
     <div class="col-md-4">
       <div class="event-owner">
-        <h4><%= t('.who_invites') %></h4>
+        <h5><%= t('.who_invites') %></h5>
         <p><%= render partial: 'users/user', object: @event.user %></p>
       </div>
       <div class="event-subscriptions">
-        <h4><%= t(".who's_coming") %></h4>
+        <% if @event.subscriptions.except(@new_subscription).count > 0 %>
+          <h5><%= t(".who's_coming") %></h5>
+        <% else %>
+          <h5><%= t(".nobody's_coming_yet") %></h5>
+        <% end %>
         <div>
           <p>
-            <%= render partial: 'subscriptions/subscription',
-                       collection: @event.subscriptions.except(@new_subscription) %>
+            <%= render partial: 'subscriptions/subscription', collection: @event.subscriptions.except(@new_subscription) %>
           </p>
         </div>
       </div>
       <% unless @event.user == current_user%>
         <div class="event-subscription-form">
-          <h4><%= t('.i_will_go') %>:</h4>
+          <h5><%= t('.i_will_go') %>:</h5>
           <div>
             <%= render partial: 'subscriptions/form', locals: { subscription: @new_subscription || @event.subscriptions.build } %>
           </div>

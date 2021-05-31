@@ -108,6 +108,8 @@ ru:
       i_will_go: 'Я пойду!'
       who_invites: 'Кто зовёт:'
       who's_coming: 'Кто пойдет:'
+      nobody's_coming_yet: '(Пока никто не записался)'
+
 
   errors:
     mistake:
@@ -116,6 +118,7 @@ ru:
       few: 'ошибки'
       many: 'ошибок'
       other: 'ошибки'
+    cannot_be_subscribed: 'Не можете быть подписаны на событие'
 
   comments:
     comment:
