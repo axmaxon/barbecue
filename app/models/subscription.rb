@@ -20,6 +20,11 @@ class Subscription < ApplicationRecord
   # Пользователь не может подписаться на своё событие (id)
   validate :another_user, if: -> { user.present? }
 
+  # При подписке нельзя использовать почту зарегистрированных пользователей
+  validate :email_is_not_taken, unless: -> { user.present? }
+
+  # Почта незарегистрированных подписчиков на события сохраняется также в нижнем регистре
+  before_save :downcase_email
 
   # Если есть юзер, выдаем его имя,
   # если нет – дергаем исходный метод
@@ -30,6 +35,7 @@ class Subscription < ApplicationRecord
       super
     end
   end
+
   # Если есть юзер, выдаем его email,
   # если нет – дергаем исходный метод
   def user_email
@@ -44,5 +50,13 @@ class Subscription < ApplicationRecord
 
   def another_user
     errors.add(:user, :cannot_be_subscribed)  if user == event.user
+  end
+
+  def email_is_not_taken
+    errors.add(:user_email, :email_is_already_taken) if User.distinct.pluck(:email).include?(user_email)
+  end
+
+  def downcase_email
+    user_email.downcase!
   end
 end
