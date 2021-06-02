@@ -19,6 +19,13 @@ ru:
         datetime: 'Дата и время'
         description: 'Описание'
 
+    errors:
+      models:
+        subscription:
+          attributes:
+            user_email:
+              email_is_already_taken: 'Используйте другой e-mail или войдите в систему'
+
   controllers:
     events:
       event: 'Событие'
@@ -110,15 +117,14 @@ ru:
       who's_coming: 'Кто пойдет:'
       nobody's_coming_yet: '(Пока никто не записался)'
 
-
   errors:
     in_the_form: 'В вашей форме'
     mistake:
-      zero: 'ошибок'
-      one: 'ошибка'
-      few: 'ошибки'
-      many: 'ошибок'
-      other: 'ошибки'
+      zero: 'ошибок:'
+      one: 'ошибка:'
+      few: 'ошибки:'
+      many: 'ошибок:'
+      other: 'ошибки:'
     cannot_be_subscribed: 'Не можете быть подписаны на событие'
 
   comments:
