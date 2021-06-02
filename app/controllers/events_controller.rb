@@ -44,11 +44,10 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
-    event_title = @event.title
     @event.destroy
+
     redirect_to events_url,
-                notice: "#{I18n.t('controllers.events.event')} '#{event_title}'
-                #{I18n.t('controllers.events.deleted')}"
+                notice: I18n.t('controllers.events.deleted', title: @event.title)
   end
 
   private
