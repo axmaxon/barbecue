@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  # Смонтируем загрузчик (указываем подответственное поле таблицы и класс загрузчика )
+  mount_uploader :avatar, AvatarUploader
+
   has_many :events
   has_many :comments, dependent: :destroy
   has_many :subscriptions
@@ -10,6 +13,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: 35}
 
   after_commit :link_subscriptions, on: :create
+
 
   private
 

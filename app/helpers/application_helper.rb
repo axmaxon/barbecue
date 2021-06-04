@@ -19,8 +19,11 @@ module ApplicationHelper
   end
 
   def user_avatar(user)
-    #todo: user real avatars
-    asset_pack_path('media/images/user1.png')
+    if user.avatar?
+      user.avatar.url
+    else
+      asset_pack_path('media/images/user1.png')
+    end
   end
 
   def fa_icon(icon_class)

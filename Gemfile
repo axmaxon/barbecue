@@ -12,6 +12,12 @@ gem 'devise-i18n'
 gem 'russian'
 gem 'rails-i18n' ,  '~> 6.0.0'
 
+# Для загрузки файлов
+gem 'carrierwave'
+
+#Для обработки изображений
+gem 'rmagick'
+
 group :production do
 gem 'pg'
 end
