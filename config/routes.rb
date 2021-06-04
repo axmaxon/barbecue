@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   root "events#index"
 
   resources :events do
-    # Вложенный ресурс комментариев
+    # Вложенные ресурсы комментариев, подписок, фотографий
     resources :comments, only: [:create, :destroy]
     resources :subscriptions, only: [:create, :destroy]
+    resources :photos, only: [:create, :destroy]
   end
 
   resources :users, only: [:show, :edit, :update]
