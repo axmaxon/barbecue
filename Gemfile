@@ -15,8 +15,11 @@ gem 'rails-i18n' ,  '~> 6.0.0'
 # Для загрузки файлов
 gem 'carrierwave'
 
-#Для обработки изображений
+# Для обработки изображений
 gem 'rmagick'
+
+# Для работы с AWS
+gem 'fog-aws'
 
 group :production do
 gem 'pg'
