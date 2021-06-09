@@ -1,4 +1,5 @@
-<span class="subscription">
+<div class="subscription">
+  <span><%= fa_icon('check') %></span>
   <% if subscription.user.present? %>
     <%= render partial: 'users/user', object: subscription.user %>
   <% else %>
@@ -12,4 +13,4 @@
           data: {confirm: t('.destroy_confirm')}
         ) %>
   <% end %>
-</span>
+</div>

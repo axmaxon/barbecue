@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import 'datepicker';
 @import 'datepicker.min';
+@import 'events';
 /* Buffers */
 .navbar-light .navbar-brand{
   color: #f60000;
@@ -29,7 +30,7 @@
 
 /* Avatars for users & events */
 .img-icon, .img-icon-small {
-  height: 50px;
+  height: 40px;
   width: auto;
   border-radius: 50%;
 }
@@ -47,7 +48,7 @@
   padding: 0;
   overflow: hidden;
   border-radius: 5px;
-  border: 1px solid #17a2b8;
+  //border: 1px solid #17a2b8;
   margin-bottom: 20px;
 }
 
@@ -70,4 +71,12 @@
 .event-info {
   border: 1px solid lightgray;
   border-radius: 5px;
+}
+
+.edit-delete-event-buttons {
+  width: 50%;
+}
+.comment {
+  border-bottom: 1px solid lightgray;
+
 }

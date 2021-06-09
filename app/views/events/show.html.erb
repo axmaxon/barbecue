@@ -1,34 +1,42 @@
 <div class="event">
-  <div class="event-info row mb-3 pt-1">
+  <div class="event-info row mb-4">
     <div class="col-md-12">
-        <div class="event-info-inner row">
-          <div class="col-md-12">
-            <div class="event-description">
+      <%= content_tag 'div', '', class: 'event-background', style: "background-image: url(#{event_photo(@event)})" %>
+      <%#= content_tag 'div', '', class: 'event-background', style: "background-image: url(#{asset_pack_path('media/images/bbq_boat.jpg')})" %>
+        <div class="event-info-inner row pt-2">
+          <div class="col-md-12 row testB p-0 m-0">
+            <div class="event-description col-md-6">
               <h1><%= @event.title %></h1>
               <h3><%= l @event.datetime, format: :short %></h3>
               <h3><small><%= link_to @event.address,
                                      "https://yandex.ru/maps/?text=#{@event.address}" %></small></h3>
-              <p><%= @event.description %></p>
+              <p class="p-0 m-0"><%= @event.description %></p>
             </div>
 
-            <% if current_user_can_edit?(@event) %>
-              <div class="buffer-both">
-                <%= link_to t('events.edit.edit_event'), edit_event_path(@event),
-                            class: 'btn btn-info' %>
-              </div>
-              <div class="buffer-both">
-                <%= link_to t('events.destroy.destroy_event'), event_path(@event), method: :delete,
-                data: {confirm: t('events.destroy.are_you_sure')}, class: 'btn btn-danger'%>
+            <% unless @event.user == current_user%>
+              <div class="event-subscription-form col-md-6 d-flex flex-column mb-2">
+                <%= render partial: 'subscriptions/form', locals: { subscription: @new_subscription || @event.subscriptions.build } %>
               </div>
             <% end %>
-          </div> <!--col-md-6 -->
-        </div> <!-- row -->
+
+            <% if current_user_can_edit?(@event) %>
+              <div class="col-md-6 d-flex align-items-end justify-content-end flex-column">
+                <div class="edit-delete-event-buttons mb-2 test">
+                <%= link_to t('events.edit.edit_event'), edit_event_path(@event),
+                            class: 'btn btn-info d-block mb-2' %>
+                <%= link_to t('events.destroy.destroy_event'), event_path(@event), method: :delete,
+                data: {confirm: t('events.destroy.are_you_sure')}, class: 'btn btn-danger d-block'%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
     </div> <!--col-md-12 -->
   </div> <!--event-info row -->
 
   <div class=" event-info row pt-3 pb-3">
-    <div class="col-md-8">
-      <div class="event-photos">
+    <div class="col-md-6">
+      <div class="event-photos mb-3">
         <div class="event-photos-gallery">
           <%= render partial: 'photos/photo', collection: @event.photos.except(@new_photo) %>
         </div>
@@ -36,25 +44,18 @@
           <%= render partial: 'photos/form', locals: { photo: @new_photo || @event.photos.build } %>
         </div>
       </div>
-
-      <div class="event-comments buffer-top">
-        <%= render partial: 'comments/form', locals: { comment: @new_comment || @event.comments.build } %>
-        <div class="buffer-both">
-          <%= render partial: 'comments/comment', collection: @event.comments.except(@new_comment) %>
-        </div>
-      </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="event-owner">
-        <h5><%= t('.who_invites') %></h5>
+        <h4><%= t('.who_invites') %></h4>
         <p><%= render partial: 'users/user', object: @event.user %></p>
       </div>
       <div class="event-subscriptions">
         <% if @event.subscriptions.except(@new_subscription).count > 0 %>
-          <h5><%= t(".who's_coming") %></h5>
+          <h4><%= "#{t(".who's_coming")} (#{@event.subscriptions.except(@new_subscription).count})" %></h4>
         <% else %>
-          <h5><%= t(".nobody's_coming_yet") %></h5>
+          <h4><%= t(".nobody's_coming_yet") %></h4>
         <% end %>
         <div>
           <p>
@@ -62,14 +63,14 @@
           </p>
         </div>
       </div>
-      <% unless @event.user == current_user%>
-        <div class="event-subscription-form">
-          <h5><%= t('.i_will_go') %>:</h5>
-          <div>
-            <%= render partial: 'subscriptions/form', locals: { subscription: @new_subscription || @event.subscriptions.build } %>
-          </div>
+    </div>
+    <div class="col-md-12">
+      <div class="event-comments buffer-top mt-5">
+        <%= render partial: 'comments/form', locals: { comment: @new_comment || @event.comments.build } %>
+        <div class="buffer-both">
+          <%= render partial: 'comments/comment', collection: @event.comments.except(@new_comment) %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

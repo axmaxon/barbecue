@@ -1,19 +1,21 @@
+<h4><%= fa_icon('comment-alt') %><%= " #{t('comments.comment.add_comment')}" %></h4>
 <%= form_for [@event, comment] do |f| %>
   <%= render partial: 'partials/form_errors', locals: {model: comment} %>
-
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, class: 'form-control' %>
-  </div>
-
-  <% unless user_signed_in? %>
+  <div class="form mt-4">
     <div class="form-group">
-      <%= f.label :user_name %>
-      <%= f.text_field :user_name, class: 'form-control' %>
+      <%= f.label t('comments.comment.body') %>
+      <%= f.text_area :body, class: 'form-control' %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit t('comments.comment.send'), class: 'btn btn-info' %>
+    <% unless user_signed_in? %>
+      <div class="form-group">
+        <%= f.label t('comments.comment.your_name') %>
+        <%= f.text_field :user_name, class: 'form-control' %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit t('comments.comment.send'), class: 'btn btn-info' %>
+    </div>
   </div>
 <% end %>

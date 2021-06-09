@@ -1,19 +1,19 @@
-<%= form_for [@event, subscription] do |f| %>
-  <%= render partial: 'partials/form_errors', locals: {model: subscription} %>
+<div class="event-form-wrapper testG d-flex flex-column-reverse">
+  <%= form_for [@event, subscription] do |f| %>
+    <%= render partial: 'partials/form_errors', locals: {model: subscription} %>
 
-  <% unless user_signed_in? %>
-    <div class="form-group">
-      <%= f.label :user_name %>
-      <%= f.text_field :user_name, class: 'form-control' %>
-    </div>
+    <% unless user_signed_in? %>
+      <div class="form-group testB">
+        <%= f.label :user_name %>
+        <%= f.text_field :user_name, class: 'form-control' %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :user_email %>
-      <%= f.text_field :user_email, class: 'form-control' %>
-    </div>
+      <div class="form-group testO">
+        <%= f.label :user_email %>
+        <%= f.text_field :user_email, class: 'form-control' %>
+      </div>
+    <% end %>
+
+    <%= f.submit t('subscriptions.subscription.subscribe'), class: 'btn btn-info float-md-right' %>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit t('subscriptions.subscription.subscribe'), class: 'btn btn-info' %>
-  </div>
-<% end %>
+</div>

@@ -1,12 +1,17 @@
+<%# Форма для добавления новой фотографии с одним полем photo %>
+<h4><%= fa_icon('camera-retro') %><%= " #{t('photos.add_photo')}" %></h4>
 <%= form_for [@event, photo], html: { multipart: true } do |f| %>
   <%= render partial: 'partials/form_errors', locals: {model: photo} %>
 
-  <div class="form-group">
-    <%= f.label :photo %>
-    <%= f.file_field :photo %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit 'Загрузить', class: 'btn btn-primary' %>
+  <div class="form mt-4">
+    <div class="form-group">
+      <%#= f.label :photo %>
+      <%= f.file_field :photo %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit t('photos.upload'), class: 'btn btn-info' %>
+    </div>
   </div>
 <% end %>

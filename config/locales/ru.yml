@@ -140,8 +140,18 @@ ru:
     comment:
       destroy_confirm: 'Вы уверены, что хотите удалить этот комментарий?'
       send: 'Отправить'
+      add_comment: 'Оставить комментарий:'
+      body: 'Текст комментария'
+      your_name: 'Ваше имя'
 
   subscriptions:
     subscription:
       destroy_confirm: 'Вы уверены, что хотите удалить эту подписку?'
-      subscribe: 'Подписаться'
+      subscribe: 'Я пойду!'
+
+  photos:
+    upload: 'Загрузить'
+    add_photo: 'Добавить фото:'
+    select_a_file: 'Выберите фото'
+    who_added: 'добавил:'
+

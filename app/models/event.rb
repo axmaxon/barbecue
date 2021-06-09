@@ -10,4 +10,9 @@ class Event < ApplicationRecord
   validates :title, presence: true, length: {maximum: 255}
   validates :address, presence: true
   validates :datetime, presence: true
+
+  # Возвращает массив тех кто идёт на мероприятие включая организатора, без повторов
+  def visitors
+    (subscribers + [user]).uniq
+  end
 end

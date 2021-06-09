@@ -35,7 +35,7 @@ module ApplicationHelper
     if photos.any?
       photos.sample.photo.url
     else
-      asset_path('event.jpg')
+      asset_pack_path('media/images/bbq_boat.jpg')
     end
   end
 
@@ -54,7 +54,7 @@ module ApplicationHelper
     if user.avatar.file.present?
       user.avatar.thumb.url
     else
-      asset_path('user.png')
+      asset_pack_path('media/images/user.png')
     end
   end
 

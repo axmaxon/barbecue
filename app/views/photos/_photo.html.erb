@@ -1,5 +1,8 @@
-<div class="event-photo buffer-both">
-  <%= link_to image_tag(photo.photo.thumb.url), photo.photo.url %>
-
-  Добавил <%= render partial: 'users/user', object: photo.user %>
+<%# Паршал для вывода отдельной фотографии и добавившего её пользователя%>
+<div class="event-photo buffer-both d-flex flex-column">
+  <div>
+    <%= link_to image_tag(photo.photo.thumb.url), photo.photo.url %>
+  </div>
+  <%= t('photos.who_added') %>
+  <%= render partial: 'users/user', object: photo.user %>
 </div>
