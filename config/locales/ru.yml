@@ -72,7 +72,7 @@ ru:
     passwords:
       new:
         forgot_your_password: 'Забыли пароль?'
-        send_me_reset_password_instructions: 'Выслать новый пароль'
+        send_me_reset_password_instructions: 'Выслать инструкцию'
       edit:
         change_my_password: 'Изменить мой пароль'
         change_your_password: 'Изменить пароль'

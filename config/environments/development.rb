@@ -30,8 +30,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Для того чтобы получить информацию об ошибке. (В продакшене эта опция отключена)
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -65,4 +65,17 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   #
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # delivery_method устанавливает способ доставки smtp в принципе идет по умолчанию
+  config.action_mailer.delivery_method = :smtp
+
+  # Тестовая штука (т.к включает конфиденциальные данные)
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: '587',
+    user_name: 'mxmxnnk', # не используйте для тестов свои реальные ящики
+    password: '212121gG*',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 end
