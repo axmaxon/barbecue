@@ -64,17 +64,17 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   #
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # delivery_method устанавливает способ доставки smtp в принципе идет по умолчанию
   config.action_mailer.delivery_method = :smtp
 
-  # Тестовая штука (т.к включает конфиденциальные данные)
+  # Тестовая штука (отправка с личного ящика)
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: '587',
-    user_name: 'mxmxnnk',
-    password: '',
+    user_name: ENV['USER_NAME'],
+    password: ENV['PASSWORD'],
     authentication: 'plain',
     enable_starttls_auto: true
   }

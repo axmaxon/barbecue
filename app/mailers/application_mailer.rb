@@ -1,4 +1,10 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'axmaxon@yandex.ru'
+  # Используются разные ящики для разных окружений (для dev/mailjet - yandex)
+  if Rails.env.production?
+    default from: Rails.application.credentials.mailjet[:sender]
+  else
+    default from: Rails.application.credentials.gmail[:sender]
+  end
+
   layout 'mailer'
 end
