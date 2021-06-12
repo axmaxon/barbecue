@@ -50,6 +50,8 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: 'bbq-tomorrow.herokuapp.com' }
+
   # Использовать для отправки писем Mailjet
   config.action_mailer.delivery_method = :mailjet
 
