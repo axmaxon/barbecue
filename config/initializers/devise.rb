@@ -24,8 +24,14 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailersfgsdg class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-  # config.mailer_sender = 'mxmxmnnk@gmail.com'
+  # config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+
+  # email отправителя, в зависимости от окружения. (Критично для mailjet)
+  if Rails.env.production?
+    config.mailer_sender = Rails.application.credentials.mailjet[:sender]
+  else
+    config.mailer_sender = Rails.application.credentials.gmail[:sender]
+  end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
