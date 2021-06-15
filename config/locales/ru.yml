@@ -157,16 +157,26 @@ ru:
 
   event_mailer:
     comment:
-      title: 'Новый комментарий'
+      title: "Новый комментарий @ "
       author: 'Автор'
       event: 'Событие'
       datetime: 'Состоится'
       owner: 'Организатор'
     subscription:
-      title: 'Новая подписка'
+      title: 'Новая подписка на'
       name: 'Имя'
       email: 'Email'
       author: 'Автор'
       event: 'Событие'
       datetime: 'Состоится'
       owner: 'Организатор'
+    photo:
+      title: 'Добавлена новая фотография к событию '
+      name: 'Имя'
+      email: 'Email'
+      author: 'Автор'
+      event: 'Событие'
+      datetime: 'Дата события'
+      owner: 'Организатор'
+    message_subjects:
+      new_subscription:
