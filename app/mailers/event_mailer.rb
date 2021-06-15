@@ -25,7 +25,15 @@ class EventMailer < ApplicationMailer
     @event = event
     @photo = photo
 
-    attachments.inline['picture.jpg'] = File.read("public#{photo.photo.url}")
+    if Rails.env.production?
+      # На продакшене фото для прикрепления будет взято здесь
+      # например: //bbq-tommorow-bucket.s3.amazonaws.com/uploads/photo/photo/36/chto-nibud.jpg)
+      attachments.inline['picture.jpg'] = File.read(photo.photo.url)
+    else
+      # В development фото будет взято из локального хранилища
+      # напр.: app/public/uploads/photo/photo/17/chto-nibud.jpg
+      attachments.inline['picture.jpg'] = File.read("public#{photo.photo.url}")
+    end
 
     mail to: email, subject: "#{ I18n.t('event_mailer.photo.title')} #{event.title}"
   end
