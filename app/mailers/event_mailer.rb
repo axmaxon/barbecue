@@ -21,16 +21,14 @@ class EventMailer < ApplicationMailer
     mail to: email, subject: "#{I18n.t('event_mailer.comment.title')} #{event.title}"
   end
 
-  # Письмо о добавлении новой фото к событию
+  # Письмо о добавлении новой фотографии к событию
   def photo(event, photo, email)
     @event = event
     @photo = photo
 
     if Rails.env.production?
-      # На продакшене фото для прикрепления будет взято здесь
+      # На продакшене фото для прикрепления будет взято из хранилища на aws
       # например: //bbq-tommorow-bucket.s3.amazonaws.com/uploads/photo/photo/36/chto-nibud.jpg)
-      # attachments.inline['picture.jpg'] = File.read(photo.photo.url)
-      # attachments.inline['picture.jpg'] = open(photo.photo.url).read
       attachments.inline['picture.jpg'] = open(URI.parse(photo.photo.url)).read
 
     else
@@ -42,9 +40,3 @@ class EventMailer < ApplicationMailer
     mail to: email, subject: "#{ I18n.t('event_mailer.photo.title')} #{event.title}"
   end
 end
-
-# s3://bbq-tommorow-bucket/uploads/photo/photo/38/ddd.jpg
-#
-# https://bbq-tommorow-bucket.s3.us-east-2.amazonaws.com/uploads/photo/photo/38/ddd.jpg
-#
-# https://bbq-tommorow-bucket.s3.amazonaws.com/uploads/photo/photo/38/ddd.jpg)
