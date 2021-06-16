@@ -1,3 +1,4 @@
+# require 'open-uri'
 # Письма о событиях
 class EventMailer < ApplicationMailer
   # Письмо о новой подписке для автора события. В параметрах передаём то что необходимо
@@ -28,7 +29,10 @@ class EventMailer < ApplicationMailer
     if Rails.env.production?
       # На продакшене фото для прикрепления будет взято здесь
       # например: //bbq-tommorow-bucket.s3.amazonaws.com/uploads/photo/photo/36/chto-nibud.jpg)
-      attachments.inline['picture.jpg'] = File.read(photo.photo.url)
+      # attachments.inline['picture.jpg'] = File.read(photo.photo.url)
+      # attachments.inline['picture.jpg'] = open(photo.photo.url).read
+      attachments.inline['picture.jpg'] = open(URI.parse(photo.photo.url)).read
+
     else
       # В development фото будет взято из локального хранилища
       # напр.: app/public/uploads/photo/photo/17/chto-nibud.jpg
@@ -38,3 +42,9 @@ class EventMailer < ApplicationMailer
     mail to: email, subject: "#{ I18n.t('event_mailer.photo.title')} #{event.title}"
   end
 end
+
+# s3://bbq-tommorow-bucket/uploads/photo/photo/38/ddd.jpg
+#
+# https://bbq-tommorow-bucket.s3.us-east-2.amazonaws.com/uploads/photo/photo/38/ddd.jpg
+#
+# https://bbq-tommorow-bucket.s3.amazonaws.com/uploads/photo/photo/38/ddd.jpg)
