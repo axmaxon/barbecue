@@ -53,12 +53,13 @@ class CommentsController < ApplicationController
 
   def notify_subscribers(event, comment)
     # Собираем всех подписчиков и автора события в массив мэйлов, исключаем повторяющиеся
-    # И автора комментария
-    all_emails =
-      (event.subscriptions.map(&:user_email) + [event.user.email]).uniq - [current_user.email]
+    all_emails = (event.subscriptions.map(&:user_email) + [event.user.email]).uniq
 
-    # По адресам из этого массива делаем рассылку берём EventMailer и его метод comment
-    # с параметрами. И отсылаем в этом же потоке
+    # Если автор комментария является залогиненным пользователем исключаем и его email
+    # из массива для рассылки
+    all_emails -= [current_user.email] if current_user.present?
+
+    # По адресам из этого массива делаем рассылку в этом же потоке
     all_emails.each do |mail|
       EventMailer.comment(event, comment, mail).deliver_now
     end
