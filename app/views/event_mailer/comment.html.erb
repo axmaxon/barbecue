@@ -12,3 +12,5 @@
 
 <%= t '.owner' %>
 <h4><%= @event.user.name %></h4>
+
+<h4><%= link_to t('event_mailer.go_to.event'), event_url(@event) %></h4>

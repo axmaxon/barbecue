@@ -1,5 +1,17 @@
 <h1><%= t '.title' %></h1>
-<p><%= image_tag attachments['picture.jpg'].url, alt: 'new photo', class: 'photos', style: 'height:150px; width:auto;' %></p>
+<!--<p><%#= image_tag attachments['picture.jpg'].url, alt: 'new photo', class: 'photos', style: 'height:150px; width:auto;' %></p>-->
+
+<%byebug %>
+
+<h1>"Вот оно:"</h1>
+
+<%= image_tag(@photo.photo.url)%>
+<%= link_to image_tag(@photo.photo.thumb.url), @photo.photo.url %>
+<%= image_tag(image_url(@photo.photo.url, host: 'http://localhost:3000'))%>
+<%= image_tag("http://localhost:3000/uploads/photo/photo/61/ava1.jpg") %>
+
+
+
 <p><%= t '.author' %>: <strong><%= @photo.user.name %></strong></p>
 
 <hr/>
@@ -12,3 +24,5 @@
 
 <%= t '.owner' %>
 <h4><%= @event.user.name %></h4>
+
+<h4><%= link_to t('event_mailer.go_to.event'), event_url(@event) %></h4>
