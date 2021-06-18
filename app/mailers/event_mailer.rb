@@ -10,7 +10,7 @@ class EventMailer < ApplicationMailer
 
     # Метод формирует письмо: to: - на какой email отправляется письмо, др. поля - на выбор.
     # (subject:, from:, )
-    mail to: event.user.email, subject: "#{I18n.t('event_mailer.subscription.title')} #{event.title}"
+    mail to: event.user.email, subject: default_i18n_subject(event_title: event.title)
   end
 
   # Письмо о новом комментарии на заданный email
@@ -18,7 +18,7 @@ class EventMailer < ApplicationMailer
     @comment = comment
     @event = event
 
-    mail to: email, subject: "#{I18n.t('event_mailer.comment.title')} #{event.title}"
+    mail to: email, subject: default_i18n_subject(event_title: event.title)
   end
 
   # Письмо о добавлении новой фотографии к событию
@@ -26,17 +26,16 @@ class EventMailer < ApplicationMailer
     @event = event
     @photo = photo
 
-    if Rails.env.production?
-      # На продакшене фото для прикрепления будет взято из хранилища на aws
-      # например: //bbq-tommorow-bucket.s3.amazonaws.com/uploads/photo/photo/36/chto-nibud.jpg)
-      attachments.inline['picture.jpg'] = open(URI.parse(photo.photo.url)).read
+    # if Rails.env.production?
+    #   # На продакшене фото для прикрепления будет взято из хранилища на aws
+    #   # например: //bbq-tommorow-bucket.s3.amazonaws.com/uploads/photo/photo/36/chto-nibud.jpg)
+    #   attachments.inline['picture.jpg'] = open(URI.parse(photo.photo.url)).read
+    # else
+    #   # В development фото будет взято из локального хранилища
+    #   # напр.: app/public/uploads/photo/photo/17/chto-nibud.jpg
+    #   attachments.inline['picture.jpg'] = File.read("public#{photo.photo.url}")
+    # end
 
-    else
-      # В development фото будет взято из локального хранилища
-      # напр.: app/public/uploads/photo/photo/17/chto-nibud.jpg
-      attachments.inline['picture.jpg'] = File.read("public#{photo.photo.url}")
-    end
-
-    mail to: email, subject: "#{ I18n.t('event_mailer.photo.title')} #{event.title}"
+    mail to: email, subject: default_i18n_subject(event_title: event.title)
   end
 end
