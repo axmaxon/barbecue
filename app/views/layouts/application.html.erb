@@ -29,6 +29,11 @@
   <!-- Size should be 32 x 32 pixels -->
   <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
+  <!-- Подключаем yd-map до запуска maps.js (подключенного в application.js) -->
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=<%= "#{Rails.application.credentials.yandex[:api_key]}" %>&lang=ru_RU"
+          type="text/javascript">
+  </script>
+
   <%#= javascript_include_tag "application" %>
   <%= javascript_pack_tag 'application' %>
 

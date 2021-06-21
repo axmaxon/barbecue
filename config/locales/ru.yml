@@ -20,8 +20,6 @@ ru:
         address: 'Место проведения'
         datetime: 'Дата и время'
         description: 'Описание'
-      photo:
-        photo: 'Фотография'
 
     errors:
       models:
