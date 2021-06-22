@@ -9,3 +9,6 @@
 <%= t '.event' %>: <%= @event.title %>
 <%= t '.datetime' %>: <%= l @event.datetime %>
 <%= t '.owner' %>: <%= @event.user.name %>
+
+<%= t('event_mailer.go_to.event_text_version')%>:
+<%= event_url(@event) %>

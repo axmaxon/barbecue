@@ -1,11 +1,14 @@
-Новая подписка
+<%= "#{t '.title'} #{@event.title}" %>
 ----
 
-Имя: <%= @name %>
-Email: <%=  @email %>
+<%= t '.name' %>: <%= @name %>
+<%= t '.email' %>: <%=  @email %>
 
 ----------------------
 
-Событие: <%= @event.title %>
-Состоится: <%= l @event.datetime %>
-Организатор: <%= @event.user.name %>
+<%= t '.event' %>: <%= @event.title %>
+<%= t 'event_mailer.subscription.datetime' %>: <%= l @event.datetime %>
+<%= t '.owner' %> <%= @event.user.name %>
+
+<%= t('event_mailer.go_to.event_text_version')%>:
+<%= event_url(@event) %>
