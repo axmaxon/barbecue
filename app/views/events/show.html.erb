@@ -4,7 +4,7 @@
       <%= content_tag 'div', '', class: 'event-background', style: "background-image: url(#{event_photo(@event)})" %>
       <%#= content_tag 'div', '', class: 'event-background', style: "background-image: url(#{asset_pack_path('media/images/bbq_boat.jpg')})" %>
         <div class="event-info-inner row pt-2">
-          <div class="col-md-12 row testB p-0 m-0">
+          <div class="col-md-12 row p-0 m-0">
             <div class="event-description col-md-6">
               <h1><%= @event.title %></h1>
               <h3><%= l @event.datetime, format: :short %></h3>
@@ -34,10 +34,10 @@
     </div> <!--col-md-12 -->
   </div> <!--event-info row -->
 
-  <div class=" event-info row pt-3 pb-3">
+  <div class="event-info row pt-3 pb-3">
     <div class="col-md-6">
       <div class="event-photos mb-3">
-        <div class="event-photos-gallery">
+        <div class="event-photos-gallery mb-2">
           <%= render partial: 'photos/photo', collection: @event.photos.except(@new_photo) %>
         </div>
         <div class="event-photo-form">

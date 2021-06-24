@@ -2,6 +2,7 @@
 @import 'datepicker';
 @import 'datepicker.min';
 @import 'events';
+@import '~ekko-lightbox';
 /* Buffers */
 .navbar-light .navbar-brand{
   color: #f60000;
@@ -79,4 +80,7 @@
 .comment {
   border-bottom: 1px solid lightgray;
 
+}
+a .link-to-destroy {
+  color: green;
 }

@@ -1,8 +1,19 @@
 <%# Паршал для вывода отдельной фотографии и добавившего её пользователя%>
-<div class="event-photo buffer-both d-flex flex-column">
-  <div>
-    <%= link_to image_tag(photo.photo.thumb.url), photo.photo.url %>
+<%# с возможностью удаления фотографии добавившим пользователем %>
+<div class="d-inline-flex flex-row justify-content-between">
+  <div class="p-1">
+    <% image_title =
+         "#{t('photos.who_added')} #{render partial: 'users/user', object: photo.user}"
+
+    if current_user_can_edit?(photo)
+      footer_info =
+        "#{t('photos.uploaded')} #{photo.created_at.strftime("%d.%m.%Y")}
+        #{ link_to fa_icon('trash-alt'), event_photo_url(photo.event, photo),
+          method: :delete, data: {confirm: t('photos.destroy.are_you_sure')}}"
+    else
+      footer_info = "#{t('photos.uploaded')} #{photo.created_at.strftime("%d.%m.%Y")}"
+    end %>
+
+    <%= link_to image_tag(photo.photo.thumb.url), photo.photo.url, data: { toggle: 'lightbox', title: image_title, gallery: 'event-gallery', footer: footer_info } %>
   </div>
-  <%= t('photos.who_added') %>
-  <%= render partial: 'users/user', object: photo.user %>
 </div>

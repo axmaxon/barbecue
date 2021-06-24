@@ -1,50 +1,49 @@
-document.addEventListener("DOMContentLoaded", function() {
-// Функция ymaps.ready() будет вызвана, когда
-// загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-    ymaps.ready(init);
-    var myMap;
+document.addEventListener("DOMContentLoaded", function () {
+  // Функция ymaps.ready() будет вызвана, когда
+  // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+  ymaps.ready(init);
+  var myMap;
 
-    var anyMap = document.getElementById('map')
+  var anyMap = document.getElementById('map')
 
-    function init() {
-        if (anyMap) {
+  function init() {
+    if (anyMap) {
 
-            // Переменной address присваиваем значение атрибута data-address из application.html.erb
-            var address = anyMap.getAttribute('data-address');
+      // Переменной address присваиваем значение атрибута data-address из application.html.erb
+      var address = anyMap.getAttribute('data-address');
 
-            // Создание карты
-            myMap = new ymaps.Map("map", {
-                center: [51.76, 55.09],
-                zoom: 10
-            });
+      // Создание карты
+      myMap = new ymaps.Map("map", {
+        center: [51.76, 55.09],
+        zoom: 10
+      });
 
-            // Осуществляет поиск объекта с заданным именем (address).
-            // Полученный результат сразу отображается на карте.
-            myGeocoder = ymaps.geocode(address);
+      // Осуществляет поиск объекта с заданным именем (address).
+      // Полученный результат сразу отображается на карте.
+      myGeocoder = ymaps.geocode(address);
 
-            myGeocoder.then(
-                function (res) {
-                    var coordinates = res.geoObjects.get(0).geometry.getCoordinates();
+      myGeocoder.then(
+        function (res) {
+          var coordinates = res.geoObjects.get(0).geometry.getCoordinates();
 
-                    // Размещение геообъекта на карте с помощью вспомогательного класса Placemark
-                    myMap.geoObjects.add(
-                        new ymaps.Placemark(
-                            coordinates,
-                            {iconContent: address},
-                            {preset: 'islands#blueStretchyIcon'}
-                        )
-                    );
+          // Размещение геообъекта на карте с помощью вспомогательного класса Placemark
+          myMap.geoObjects.add(
+            new ymaps.Placemark(
+              coordinates,
+              {iconContent: address},
+              {preset: 'islands#blueStretchyIcon'}
+            )
+          );
 
-                    myMap.setCenter(coordinates);
-                    myMap.setZoom(15);
-                },
-                function (err) {
-                    alert('Ошибка при определении местоположения');
-                }
-            );
+          myMap.setCenter(coordinates);
+          myMap.setZoom(15);
+        },
+        function (err) {
+          alert('Ошибка при определении местоположения');
         }
-        else {
-            return
-        }
+      );
+    } else {
+      return
     }
+  }
 })

@@ -9,6 +9,8 @@ import "bootstrap/dist/js/bootstrap.js"
 import "../scripts/datepicker.js"
 import "../scripts/datepicker.min.js"
 import "@fortawesome/fontawesome-free/css/all"
+import "../scripts/ekko_lightbox.js"
+import "ekko-lightbox"
 import "../scripts/maps.js"
 
 const images = require.context('../images/', true)
