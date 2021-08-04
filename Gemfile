@@ -24,10 +24,11 @@ gem 'rmagick'
 gem 'fog-aws'
 
 group :production do
-gem 'pg'
+  gem 'pg'
 end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3', '~> 1.4'
+  gem 'letter_opener'
 end

@@ -67,18 +67,24 @@ Rails.application.configure do
   # config.action_controller.asset_host = 'http://localhost:3000'
   # config.action_mailer.asset_host = config.action_controller.asset_host
 
+  #
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # delivery_method устанавливает способ доставки smtp в принципе идет по умолчанию
-  config.action_mailer.delivery_method = :smtp
+  # "Письмо" будет представлено в браузере. Или можно смотреть в bbq/tmp/letter_opener/
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 
-  # Использовать для отправки писем личную почту (на gmail)
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: '587',
-    user_name: ENV['USER_NAME'],
-    password: ENV['PASSWORD'],
-    authentication: 'plain',
-    enable_starttls_auto: true
-  }
+  # Возможно (но нежелательно) использовать для отправки писем личную почту (здесь - gmail;
+  # в ящике следует разрешить доступ "небезопасным приложениям". Данная опция на gmail
+  # через некоторое время простоя отключается автоматически.
+  # delivery_method устанавливает способ доставки (smtp в принципе идет по умолчанию)
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: '587',
+  #   user_name: ENV['USER_NAME'],
+  #   password: ENV['PASSWORD'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
 end
