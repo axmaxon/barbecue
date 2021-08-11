@@ -6,7 +6,6 @@ set :repo_url, "git@github.com:axmaxon/barbecue.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-
 set :branch, 'main'
 
 # Папка, где будет храниться приложение
@@ -23,7 +22,7 @@ set :deploy_to, "/home/deploy/apps/bbq"
 # set :pty, true
 
 # Файлы, которые лежат вне репозитория
-append :linked_files, 'config/database.yml'
+append :linked_files, 'config/database.yml', 'config/master.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 
 # Default value for default_env is {}
