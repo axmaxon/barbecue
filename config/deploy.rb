@@ -36,3 +36,6 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+# Снять задачу для sprockets (т.к их нет)
+Rake::Task["deploy:assets:backup_manifest"].clear_actions
