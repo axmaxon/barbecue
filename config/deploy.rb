@@ -8,7 +8,7 @@ set :repo_url, "git@github.com:axmaxon/barbecue.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Папка, где будет храниться приложение
-set :deploy_to, "home/deploy/apps/bbq"
+set :deploy_to, "/home/deploy/apps/bbq"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
