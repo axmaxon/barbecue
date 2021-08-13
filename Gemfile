@@ -16,12 +16,12 @@ gem 'dotenv-rails'
 
 # Для загрузки файлов
 gem 'carrierwave'
-
 # Для обработки изображений
 gem 'rmagick'
-
 # Для работы с AWS
 gem 'fog-aws'
+# Для создания системы авторизации
+gem 'pundit'
 
 group :production do
   gem 'pg'
@@ -36,5 +36,4 @@ group :development, :test do
   gem 'capistrano-passenger'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
-
 end
