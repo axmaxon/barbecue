@@ -20,7 +20,7 @@ ru:
         address: 'Место проведения'
         datetime: 'Дата и время'
         description: 'Описание'
-        pincode: 'Пин-код доступа'
+        pincode: 'Пин-код доступа (необязательно)'
 
     errors:
       models:
@@ -122,6 +122,14 @@ ru:
       who_invites: 'Кто зовёт:'
       who's_coming: 'Кто пойдет:'
       nobody's_coming_yet: '(Пока никто не записался)'
+    password_form:
+      pincode: 'Пин-код'
+      access_by_pincode_only: 'Доступ только по пинкоду'
+      to_home: 'На главную'
+      check_pin: 'Проверить пин-код'
+      user_set_restriction: '(организатор события установил ограничение доступа)'
+
+
 
   errors:
     in_the_form: 'В вашей форме'
