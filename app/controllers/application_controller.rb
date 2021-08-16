@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # Настройка для работы Девайза, когда юзер правит профиль
   # Если в данный момент выполняется девайсовский контроллер разрешаем параметры
   # для обновления регистрации пользователя (то же что делаем в каждом контроллере, но
@@ -26,5 +27,13 @@ class ApplicationController < ActionController::Base
       model.user == current_user ||
         (model.try(:event).present? && model.event.user == current_user)
     )
+  end
+
+  private
+
+  def user_not_authorized
+    # flash[:warning] = t('pundit.not_authorized')
+    flash[:alert] = t('pundit.not_authorized')
+    redirect_to(request.referrer || root_path)
   end
 end
