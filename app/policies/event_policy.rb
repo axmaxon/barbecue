@@ -4,20 +4,26 @@ class EventPolicy < ApplicationPolicy
   end
 
   def edit?
-    super
+    update?
   end
 
   def update?
-    super
+    user_is_owner?(record)
   end
 
   def destroy?
-    super
+    update?
   end
 
   class Scope < Scope
     def resolve
       scope.all
     end
+  end
+
+  private
+
+  def user_is_owner?(event)
+    user.present? && (event.user == user)
   end
 end

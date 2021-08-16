@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_event, only: [:show]
-  before_action :set_current_user_event, only: %i[edit update destroy ]
+  before_action :set_event, except: [:index]
+
+  # after_action :verify_authorized, only: [:edit, :update, :destroy, :show]
   before_action :password_guard!, only: [:show]
 
   # GET /events
@@ -19,15 +20,20 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = current_user.events.build
+    authorize @event
   end
 
   # GET /events/1/edit
   def edit
+    authorize @event
   end
 
   # POST /events
   def create
     @event = current_user.events.build(event_params)
+
+    authorize @event
+
     if @event.save
       redirect_to @event, notice: I18n.t('controllers.events.created')
     else
@@ -37,6 +43,8 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
+    authorize @event
+
     if @event.update(event_params)
       redirect_to @event, notice: I18n.t('controllers.events.updated')
     else
@@ -46,6 +54,8 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
+    authorize @event
+
     @event.destroy
 
     redirect_to events_url,
@@ -88,4 +98,9 @@ class EventsController < ApplicationController
       render 'password_form'
     end
   end
+
+  def user_is_owner?(event)
+    user.present? && (event.user == user)
+  end
+
 end
