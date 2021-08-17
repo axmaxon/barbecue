@@ -1,9 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_event, except: [:index]
-
-  # after_action :verify_authorized, only: [:edit, :update, :destroy, :show]
-  before_action :password_guard!, only: [:show]
+  after_action :verify_authorized, except: [:index]
 
   # GET /events
   def index
@@ -12,9 +10,15 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    @new_comment = @event.comments.build(params[:comment])
-    @new_subscription = @event.subscriptions.build(params[:subscription])
-    @new_photo = @event.photos.build(params[:photo])
+    # При наличии в полученных параметрах валидного пинкода, записываем его в cookies
+    write_down_pincode if params[:pincode].present? && @event.pincode_valid?(params[:pincode])
+
+    authorize @event
+
+    # В этом экшне перехватываем исключение от Pundit чтобы отрендерить форму ввода пинкода
+    rescue Pundit::NotAuthorizedError
+    flash.now[:alert] = I18n.t('controllers.events.wrong_pincode') if params[:pincode].present?
+    render 'pincode_form'
   end
 
   # GET /events/new
@@ -76,31 +80,8 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :address, :datetime, :description, :pincode)
   end
 
-  def password_guard!
-    # Если у события нет пин-кода, то охранять нечего
-    return true if @event.pincode.blank?
-    # Пин-код не нужен автору события
-    return true if signed_in? && current_user == @event.user
-
-    # Если нам передали код и он верный, сохраняем его в куки этого юзера
-    # Так юзеру не нужно будет вводить пин-код каждый раз
-    if params[:pincode].present? && @event.pincode_valid?(params[:pincode])
-      cookies.permanent["events_#{@event.id}_pincode"] = params[:pincode]
-    end
-
-    # Проверяем, верный ли в куках пин-код
-    # Если нет — сообщаем об этом и рендерим форму ввода пин-кода
-    pincode = cookies.permanent["events_#{@event.id}_pincode"]
-    unless @event.pincode_valid?(pincode)
-      if params[:pincode].present?
-        flash.now[:alert] = I18n.t('controllers.events.wrong_pincode')
-      end
-      render 'password_form'
-    end
+  # Пишем пинкод в cookies в нужной форме, присваиваем значение и время существования
+  def write_down_pincode
+    cookies["events_#{@event.id}_pincode"] = { value: params[:pincode], expires: 1.minute }
   end
-
-  def user_is_owner?(event)
-    user.present? && (event.user == user)
-  end
-
 end

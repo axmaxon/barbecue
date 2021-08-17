@@ -29,6 +29,12 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  # Переопределяем пользовательскую запись которую будет использовать pundit, с помощью
+  # экземпляра класса UserContext (созданного для этих целей)
+  def pundit_user
+    PunditUser.new(current_user, cookies)
+  end
+
   private
 
   def user_not_authorized

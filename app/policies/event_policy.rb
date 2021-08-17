@@ -1,6 +1,7 @@
 class EventPolicy < ApplicationPolicy
   def show?
-    super
+    return true if record.pincode.blank? || user_is_owner?(record)
+    return true if pincode_is_correct?(record)
   end
 
   def edit?
@@ -25,5 +26,10 @@ class EventPolicy < ApplicationPolicy
 
   def user_is_owner?(event)
     user.present? && (event.user == user)
+  end
+
+  # Проверяем, верный ли в куках пин-код
+  def pincode_is_correct?(event)
+    event.pincode == cookies["events_#{event.id}_pincode"]
   end
 end
