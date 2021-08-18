@@ -19,7 +19,7 @@
               </div>
             <% end %>
 
-            <% if current_user_can_edit?(@event) %>
+            <% if policy(@event).edit? %>
               <div class="col-md-6 d-flex align-items-end justify-content-end flex-column">
                 <div class="edit-delete-event-buttons mb-2 test">
                 <%= link_to t('events.edit.edit_event'), edit_event_path(@event),
