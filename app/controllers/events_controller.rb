@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_event, except: [:index]
+  before_action :set_event, except: [:index, :new, :create]
   after_action :verify_authorized, except: [:index]
 
   # GET /events

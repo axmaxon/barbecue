@@ -8,6 +8,10 @@ class EventPolicy < ApplicationPolicy
     update?
   end
 
+  def create?
+    user.present?
+  end
+
   def update?
     user_is_owner?(record)
   end
