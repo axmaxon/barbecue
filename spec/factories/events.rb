@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   factory :event do
     title { "Лучшее событие_#{rand(999)}" }
     address { "город #{rand(999)}" }

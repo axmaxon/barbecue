@@ -1,6 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    # Создаём случайное имя
     name { "Жора_#{rand(999)}" }
     sequence(:email) { |n| "someguy_#{n}@example.com" }
 
