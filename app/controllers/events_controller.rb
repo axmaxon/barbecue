@@ -15,7 +15,8 @@ class EventsController < ApplicationController
 
     authorize @event
 
-    # В этом экшне перехватываем исключение от Pundit чтобы отрендерить форму ввода пинкода
+    # В этом экшне перехватываем исключение от Pundit чтобы для неавторизованного юзера
+    # рендерить форму ввода пинкода
     rescue Pundit::NotAuthorizedError
     flash.now[:alert] = I18n.t('controllers.events.wrong_pincode') if params[:pincode].present?
     render 'pincode_form'
