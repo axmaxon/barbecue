@@ -30,7 +30,7 @@ class EventPolicy < ApplicationPolicy
   private
 
   def user_is_owner?(event)
-    user.present? && (event.user == user)
+    event.user == user
   end
 
   # Проверяем, верный ли в куках пин-код
