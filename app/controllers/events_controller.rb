@@ -2,10 +2,11 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_event, except: [:index, :new, :create]
   after_action :verify_authorized, except: [:index]
+  after_action :verify_policy_scoped, only: :index
 
   # GET /events
   def index
-    @events = Event.all
+    @events = policy_scope(Event)
   end
 
   # GET /events/1
@@ -25,6 +26,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = current_user.events.build
+
     authorize @event
   end
 
