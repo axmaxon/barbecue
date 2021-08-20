@@ -2,6 +2,7 @@ class EventPolicy < ApplicationPolicy
   def show?
     return true if record.pincode.blank? || user_is_owner?(record)
     return true if pincode_is_correct?(record)
+    false
   end
 
   def edit?
