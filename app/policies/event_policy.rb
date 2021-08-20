@@ -1,12 +1,14 @@
 class EventPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
+
   def show?
     return true if record.pincode.blank? || user_is_owner?(record)
     return true if pincode_is_correct?(record)
     false
-  end
-
-  def edit?
-    update?
   end
 
   def create?
@@ -17,14 +19,12 @@ class EventPolicy < ApplicationPolicy
     user_is_owner?(record)
   end
 
-  def destroy?
+  def edit?
     update?
   end
 
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
+  def destroy?
+    update?
   end
 
   private
