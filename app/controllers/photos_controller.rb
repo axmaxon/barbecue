@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_event, only: [:create, :destroy]
+  before_action :set_event, only: %i[create destroy]
   before_action :set_photo, only: [:destroy]
 
   # Обратите внимание: фотку может сейчас добавить даже неавторизованный пользовать
@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    message = {notice: I18n.t('controllers.photos.destroyed')}
+    message = { notice: I18n.t('controllers.photos.destroyed') }
 
     # Проверяем, может ли пользователь удалить фотографию
     # Если может — удаляем
@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
       @photo.destroy
     else
       # Если нет — сообщаем ему
-      message = {alert: I18n.t('controllers.photos.error')}
+      message = { alert: I18n.t('controllers.photos.error') }
     end
 
     # В любом случае редиректим юзера на событие

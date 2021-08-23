@@ -1,15 +1,15 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock '~> 3.16.0'
 
-set :application, "bbq"
-set :repo_url, "git@github.com:axmaxon/barbecue.git"
+set :application, 'bbq'
+set :repo_url, 'git@github.com:axmaxon/barbecue.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :branch, 'main'
 
 # Папка, где будет храниться приложение
-set :deploy_to, "/home/deploy/apps/bbq"
+set :deploy_to, '/home/deploy/apps/bbq'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -38,4 +38,4 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 # set :ssh_options, verify_host_key: :secure
 
 # Снять задачу для sprockets (т.к их нет)
-Rake::Task["deploy:assets:backup_manifest"].clear_actions
+Rake::Task['deploy:assets:backup_manifest'].clear_actions

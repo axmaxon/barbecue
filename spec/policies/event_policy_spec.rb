@@ -4,7 +4,7 @@ RSpec.describe EventPolicy, type: :policy do
   let(:user1) { FactoryBot.create(:user) }
   let(:user2) { FactoryBot.create(:user) }
 
-  let(:cookies) { {"events_#{private_event.id}_pincode" => '2222'}  }
+  let(:cookies) { { "events_#{private_event.id}_pincode" => '2222' } }
 
   let(:user_is_not_authorized) { PunditUser.new(user1, {}) }
   let(:user_is_authorized) { PunditUser.new(user2, cookies) }

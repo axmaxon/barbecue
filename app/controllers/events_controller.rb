@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_event, except: [:index, :new, :create]
+  before_action :authenticate_user!, except: %i[show index]
+  before_action :set_event, except: %i[index new create]
 
   after_action :verify_authorized, except: [:index]
   after_action :verify_policy_scoped, only: :index
@@ -17,9 +17,9 @@ class EventsController < ApplicationController
 
     authorize @event
 
-    # В этом экшне перехватываем исключение от Pundit чтобы для неавторизованного юзера
-    # рендерить форму ввода пинкода
-    rescue Pundit::NotAuthorizedError
+  # В этом экшне перехватываем исключение от Pundit чтобы для неавторизованного юзера
+  # рендерить форму ввода пинкода
+  rescue Pundit::NotAuthorizedError
     flash.now[:alert] = I18n.t('controllers.events.wrong_pincode') if params[:pincode].present?
     render 'pincode_form'
   end

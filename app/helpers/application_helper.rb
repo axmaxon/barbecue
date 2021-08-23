@@ -8,10 +8,10 @@ module ApplicationHelper
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
 
-  def bootstrap_flash(opts = {})
+  def bootstrap_flash(_opts = {})
     flash.each do |msg_type, message|
-      concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)}", role: 'alert') do
-        concat content_tag(:button, '×', class: 'close', data: { dismiss: 'alert' })
+      concat(tag.div(message, class: "alert #{bootstrap_class_for(msg_type)}", role: 'alert') do
+        concat tag.button('×', class: 'close', data: { dismiss: 'alert' })
         concat message
       end)
     end
@@ -59,6 +59,6 @@ module ApplicationHelper
   end
 
   def fa_icon(icon_class)
-    content_tag 'span', '', class: "fa fa-#{icon_class}"
+    tag.span('', class: "fa fa-#{icon_class}")
   end
 end

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_event, only: [:create, :destroy]
+  before_action :set_event, only: %i[create destroy]
   before_action :set_comment, only: [:destroy]
 
   # POST /comments

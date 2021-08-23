@@ -5,6 +5,6 @@ FactoryBot.define do
 
     # Коллбэк — после фазы :build записываем поля паролей, иначе Devise не
     # позволит создать юзера
-    after(:build) { |u| u.password_confirmation = u.password = "111111"}
+    after(:build) { |u| u.password_confirmation = u.password = '111111' }
   end
 end

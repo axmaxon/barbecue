@@ -3,16 +3,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
-gem 'puma', '~> 5.0'
-gem 'webpacker', '~> 5.0'
-gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'devise-i18n'
-gem 'russian'
-gem 'rails-i18n' ,  '~> 6.0.0'
-gem 'mailjet'
 gem 'dotenv-rails'
+gem 'jbuilder', '~> 2.7'
+gem 'mailjet'
+gem 'puma', '~> 5.0'
+gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+gem 'rails-i18n', '~> 6.0.0'
+gem 'russian'
+gem 'webpacker', '~> 5.0'
 
 # Для загрузки файлов
 gem 'carrierwave'
@@ -28,16 +28,16 @@ group :production do
 end
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3', '~> 1.4'
-  gem 'letter_opener'
-  gem "capistrano", "~> 3.16"
-  gem 'capistrano-rails'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rbenv'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano', '~> 3.16'
   gem 'capistrano-bundler'
-  gem 'rspec-rails', '~> 5.0.0'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'factory_bot_rails'
+  gem 'letter_opener'
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do

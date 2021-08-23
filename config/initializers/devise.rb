@@ -27,11 +27,11 @@ Devise.setup do |config|
   # config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # email отправителя, в зависимости от окружения. (Критично для mailjet)
-  if Rails.env.production?
-    config.mailer_sender = Rails.application.credentials.mailjet[:sender]
-  else
-    config.mailer_sender = Rails.application.credentials.gmail[:sender]
-  end
+  config.mailer_sender = if Rails.env.production?
+                           Rails.application.credentials.mailjet[:sender]
+                         else
+                           Rails.application.credentials.gmail[:sender]
+                         end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
