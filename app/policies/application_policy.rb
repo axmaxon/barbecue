@@ -4,6 +4,19 @@ class ApplicationPolicy
   delegate :user, to: :pundit_user
   delegate :cookies, to: :pundit_user
 
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      scope.all
+    end
+  end
+
   def initialize(pundit_user, record)
     @pundit_user = pundit_user
     @record = record
@@ -35,18 +48,5 @@ class ApplicationPolicy
 
   def destroy?
     false
-  end
-
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope.all
-    end
   end
 end
