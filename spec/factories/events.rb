@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :event do
     title { "Лучшее событие_#{rand(999)}" }
     address { "город #{rand(999)}" }
-    datetime { '2021-08-28 07:59:00' }
+    datetime { DateTime.now + 2.weeks }
 
     association :user
   end

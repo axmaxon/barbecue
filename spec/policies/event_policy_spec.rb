@@ -20,38 +20,39 @@ RSpec.describe EventPolicy, type: :policy do
 
   context 'when event is public' do
     permissions :update?, :edit?, :destroy? do
-      it 'allows access if user is the owner of event' do
-        expect(subject).to permit(user_is_not_authorized, public_event)
+      context 'and user is the owner of event' do
+        it { is_expected.to permit(user_is_not_authorized, public_event) }
       end
 
-      it 'denies access if user is not the owner of event' do
-        expect(subject).not_to permit(user_is_not_authorized, another_public_event)
+      context 'and user is not the owner of event' do
+        it { is_expected.not_to permit(user_is_not_authorized, another_public_event) }
       end
     end
 
     permissions :show? do
-      it 'allows access if user is not owner and is not authorized for current event' do
-        expect(subject).to permit(user_is_not_authorized, public_event)
+      context 'and user is not owner and is not authorized for current event' do
+        it { is_expected.to permit(user_is_not_authorized, public_event) }
       end
     end
   end
 
   context 'when event is private' do
     permissions :show? do
-      it 'allows access if user is owner of event but he is not authorized for current event' do
-        expect(subject).to permit(user_is_not_authorized, private_event)
+      context 'and user is owner of event but he is not authorized for current event' do
+        it { is_expected.to permit(user_is_not_authorized, private_event) }
       end
 
-      it 'allows access if user is not owner but he is authorized for current event' do
-        expect(subject).to permit(user_is_authorized, private_event)
+      context 'and user is not owner but he is authorized for current event' do
+        it { is_expected.to permit(user_is_authorized, private_event) }
+
       end
 
-      it 'denies access if user is not the owner and he is not authorized for current event' do
-        expect(subject).not_to permit(user_is_not_authorized, another_private_event)
+      context 'and user is not the owner and he is not authorized for current event' do
+        it { is_expected.not_to permit(user_is_not_authorized, another_private_event) }
       end
 
-      it 'allows access if user is not authenticated, but he is authorized for current event' do
-        expect(subject).to permit(user_is_not_authenticated, private_event)
+      context 'and user is not authenticated, but he is authorized for current event' do
+        it { is_expected.to permit(user_is_not_authenticated, private_event) }
       end
     end
   end
