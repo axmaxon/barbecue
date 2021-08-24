@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe EventPolicy, type: :policy do
-  let(:user1) { FactoryBot.create(:user) }
-  let(:user2) { FactoryBot.create(:user) }
+  let(:user1) { create(:user) }
+  let(:user2) { create(:user) }
 
   let(:cookies) { { "events_#{private_event.id}_pincode" => '2222' } }
 
@@ -10,11 +10,11 @@ RSpec.describe EventPolicy, type: :policy do
   let(:user_is_authorized) { PunditUser.new(user2, cookies) }
   let(:user_is_not_authenticated) { PunditUser.new(nil, cookies) }
 
-  let(:public_event) { FactoryBot.create(:event, user: user1) }
-  let(:another_public_event) { FactoryBot.create(:event, user: user2) }
+  let(:public_event) { create(:event, user: user1) }
+  let(:another_public_event) { create(:event, user: user2) }
 
-  let(:private_event) { FactoryBot.create(:event, user: user1, pincode: '2222') }
-  let(:another_private_event) { FactoryBot.create(:event, user: user2, pincode: '3333') }
+  let(:private_event) { create(:event, user: user1, pincode: '2222') }
+  let(:another_private_event) { create(:event, user: user2, pincode: '3333') }
 
   subject { described_class }
 
