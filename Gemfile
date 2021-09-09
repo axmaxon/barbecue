@@ -22,6 +22,9 @@ gem 'rmagick'
 gem 'fog-aws'
 # Для создания системы авторизации
 gem 'pundit'
+# Для авторизации через соцсети
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :production do
   gem 'pg'
