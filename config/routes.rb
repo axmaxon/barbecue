@@ -15,4 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[show edit update]
+
+  controller :pages do
+    get :privacy_policy
+    get :deletion_guide
+  end
 end
