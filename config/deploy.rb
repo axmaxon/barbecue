@@ -6,7 +6,8 @@ set :repo_url, 'git@github.com:axmaxon/barbecue.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, 'main'
+# set :branch, 'main'
+set :branch, 'oauth'
 
 # Папка, где будет храниться приложение
 set :deploy_to, '/home/deploy/apps/bbq'
