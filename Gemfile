@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'devise', '~> 4.8'
 gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'jbuilder', '~> 2.7'
