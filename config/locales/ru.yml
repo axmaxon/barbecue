@@ -60,8 +60,8 @@ ru:
 
   devise:
     omniauth_callbacks:
-      failure: "Не удалось аутентифицировать вас от %{kind} потому что \"%{reason}\"."
-      success: "Успешно аутентифицирован от %{kind} аккаунта."
+      failure: "Не удалась аутентификация через %{kind} в связи с \"%{reason}\"."
+      success: "Успешная аутентификация через %{kind}."
       error: "Ошибка аутентификации."
     shared:
       links:

@@ -279,9 +279,18 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+  # callback_url нужно обязательно внести в 'Действительные URI перенаправления для OAuth'
+  # в настройках приложения на developers.facebook.com/ (т.к. строгий режим для URI
+  # перенаправления там сейчас не отключается)
   config.omniauth :facebook, Rails.application.credentials.facebook[:omniauth_app_id],
                   Rails.application.credentials.facebook[:omniauth_secret_key],
                   callback_url: 'https://bbq-tomorrow.ru/users/auth/facebook/callback'
+
+  # Настройки для development
+  # config.omniauth :facebook, Rails.application.credentials.facebook[:test_omniauth_app_id],
+  #                 Rails.application.credentials.facebook[:test_omniauth_secret_key],
+  #                 callback_url: 'http://localhost:3000/users/auth/facebook/callback'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
