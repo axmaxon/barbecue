@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   after_commit :link_subscriptions, on: :create
 
-  def self.find_for_facebook_oauth(access_token)
+  def self.find_for_provider_oauth(access_token)
     # Достаём email из токена
     email = access_token.info.email
     user = where(email: email).first
@@ -26,7 +26,13 @@ class User < ApplicationRecord
     # Если не нашёлся, достаём провайдера, айдишник и урл
     provider = access_token.provider
     id = access_token.extra.raw_info.id
-    url = "https://facebook.com/#{id}"
+
+    case provider
+    when 'facebook'
+      url = "https://facebook.com/#{id}"
+    when 'vkontakte'
+      url = "https://vk.com/id#{id}"
+    end
 
     # Теперь ищем в базе запись по провайдеру и урлу
     # Если есть, то вернётся, если нет, то будет создана новая
