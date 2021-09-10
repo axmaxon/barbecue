@@ -5,8 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def provider
+
     # Дёргаем метод модели, который найдёт пользователя
     @user = User.find_for_provider_oauth(request.env['omniauth.auth'])
+    byebug
     provider = request.env['omniauth.auth'].provider
 
     # Если юзер есть, то логиним и редиректим на его страницу
