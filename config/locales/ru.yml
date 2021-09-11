@@ -69,6 +69,7 @@ ru:
         forgot_your_password: 'Забыли пароль?'
         sign_in: 'Войти'
         sign_up: 'Регистрация'
+        sign_in_with: 'Войти через %{provider}'
     passwords:
       new:
         forgot_your_password: 'Забыли пароль?'

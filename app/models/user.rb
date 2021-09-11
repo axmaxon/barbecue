@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :validatable, :omniauthable, omniauth_providers: [:facebook]
+         :validatable, :omniauthable, omniauth_providers: %i[facebook vkontakte]
 
   # Смонтируем загрузчик (указываем подответственное поле таблицы и класс загрузчика )
   mount_uploader :avatar, AvatarUploader
@@ -15,14 +15,12 @@ class User < ApplicationRecord
 
   after_commit :link_subscriptions, on: :create
 
-  def self.find_for_provider_oauth(access_token)
-
+  def self.from_omniauth(access_token)
+    byebug
+    # Ищем юзера по емэйлу, который достали из токена, возвращаем, если нашёлся
     email = access_token.info.email
-
-    # Ищем юзера по емэйлу, который достали из токена
     user = where(email: email).first
 
-    # Возвращаем, если нашёлся
     return user if user.present?
 
     # Если не нашёлся, достаём провайдера и id, монтируем url
@@ -39,7 +37,6 @@ class User < ApplicationRecord
     # Теперь ищем в базе запись по провайдеру и урлу
     # Если есть, то вернётся, если нет, то будет создана новая
     where(url: url, provider: provider).first_or_create! do |user|
-
       # Если создаём новую запись, прописываем имя, email, пароль
       user.name = access_token.info.name
       user.email = email
