@@ -9,7 +9,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def provider
-    byebug
     # Дёргаем метод модели, который найдёт пользователя
     @user = User.from_omniauth(request.env['omniauth.auth'])
     provider = request.env['omniauth.auth'].provider
