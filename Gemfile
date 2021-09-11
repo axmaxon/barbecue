@@ -25,6 +25,7 @@ gem 'pundit'
 # Для авторизации через соцсети
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 gem "omniauth-rails_csrf_protection"
 
 group :production do
