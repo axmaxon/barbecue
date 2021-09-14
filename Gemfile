@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'devise-i18n'
 gem 'dotenv-rails'
@@ -22,9 +23,6 @@ gem 'rmagick'
 gem 'fog-aws'
 # Для создания системы авторизации
 gem 'pundit'
-# Для авторизации через соцсети
-gem 'omniauth'
-gem 'omniauth-facebook'
 
 group :production do
   gem 'pg'
