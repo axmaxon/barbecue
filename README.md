@@ -23,7 +23,7 @@
 - Аутентификация, авторизация: `Devise`, `Pundit`
 - Отправка писем и уведомлений: `Mailjet`
 - Файлы: `carrierwave`, `rmagic`, `Amazon web services S3`
-- СУБД в продакшен-окружении: `PostgresQL`
+- СУБД в продакшн-окружении: `PostgresQL`
 - Локализация: `rails-I18n`
 - Приложение также [развернуто](https://bbq-tomorrow.ru) на `Amazon web services EC2`: `Ubuntu 20.04`,
 `nginx`,`Phusion Passenger` через `Capistrano` 
