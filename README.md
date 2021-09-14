@@ -1,24 +1,77 @@
-# README
+Веб-приложение "Barbecue" 
+===
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Приложение для организации совместного отдыха с друзьями, или любых иных мероприятий, для 
+которых возможно определить место и время. 
 
-Things you may want to cover:
+Каждый участник системы может создавать событие - открытое или приватное. С указанием
+адреса и времени его начала. Каждый участник может присоединиться к открытому событию, и , 
+при наличии у него пин-кода - к приватному.
 
-* Ruby version
+Помимо этого пользователю доступны:
+- точка сбора (по её адресу) отображается на карте;
+- добавление аватара к личному профилю;
+- добавление фотографий и комментариев к событиям; 
+- получение информации по электронной почте об обновлении событий (комментарии, фотографии,
+подписки);
 
-* System dependencies
+## Технологии:
 
-* Configuration
+- `Ruby 2.7.2`
+- `Ruby on Rails 6.1.3`
+- `Webpacker 5.3.0`, `Bootstrap 4.6.0` 
+- Аутентификация, авторизация: `Devise`, `Pundit`
+- Отправка писем и уведомлений: `Mailjet`
+- Файлы: `carrierwave`, `rmagic`, `Amazon web services S3`
+- СУБД в продакшен-окружении: `PostgresQL`
+- Локализация: `rails-I18n`
+- Приложение также [развернуто](https://bbq-tomorrow.ru) на `Amazon web services EC2`: `Ubuntu 20.04`,
+`nginx`,`Phusion Passenger` через `Capistrano` 
 
-* Database creation
+### Для локального запуска:
 
-* Database initialization
+1. Клонировать репозиторий:
 
-* How to run the test suite
+```
+$ git clone git@github.com:axmaxon/barbecue.git
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+2. Установить любым удобным способом `ruby 2.7.2`, если отсутствует.
+3. Установить необходимые гемы и зависимости:
 
-* Deployment instructions
+```
+$ bundle
+```
+4. В приложении используются сервисы, для которых следует получить ключи и указать
+их и другие необходимые переменные в `Rails credentials`
 
-* ...
+**mailjet:**
+- api_key
+- secret_key
+- sender
+
+**yandex:**
+-api_key
+
+**aws:**
+- s3_access_key_id 
+- s3_secret_access_key 
+- s3_bucket_name 
+
+5. Применить миграции:
+
+```
+$ bundle exec rails db:migrate
+```
+
+6. Запустить сервер:
+
+```
+$ bundle exec rails db:migrate
+```
+
+7. В адресной строке веб-браузера указать:
+
+```
+http://localhost:3000/
+```
