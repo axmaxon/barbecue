@@ -51,7 +51,7 @@
 
       <div class="col-lg-10 p-0">
         <nav class="navbar navbar-expand-sm navbar-light bg-light pb-3 pt-3 pl-0 pr-0 mb-3">
-          <%= image_pack_tag "media/images/kebab.png", class: "d-inline-block align-top navbar-brand-image mr-2" %>
+          <%=link_to image_pack_tag("media/images/kebab.png", class: "d-inline-block align-top navbar-brand-image mr-2"), root_path, class: "navbar-brand"%>
           <%= link_to t('app.name'), root_path, class: 'navbar-brand' %>
 
           <div class="collapse navbar-collapse d-sm-flex" id="navbarNav">
