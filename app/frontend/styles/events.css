@@ -58,13 +58,12 @@
 
 /* Сокрытие и размытие части объемного текста, фиксация высоты блока с адресом */
 .event-address {
-     height: 70px;
-     overflow: hidden;
-     color: transparent;
-     -webkit-background-clip: text;
-     background-clip: text;
-     background-image: linear-gradient(to bottom, lightgray, lightgray, rgba(0, 0, 0, 0));
-   }
+  height: 70px;
+  overflow: hidden;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to bottom, lightgray, lightgray, rgba(0, 0, 0, 0));
+}
 
 /*.testR {*/
 /* border: 1px solid red;*/
