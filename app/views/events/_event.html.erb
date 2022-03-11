@@ -5,7 +5,7 @@
       <div class="caption">
         <%= content_tag 'div', '', class: 'event-background', style: "background-image: url(#{asset_pack_path('media/images/bbq_boat.jpg')})" %>
         <div class="event-description">
-          <h4><%= link_to event.title, event_path(event) %></h4>
+          <h4 class="event-title"><%= link_to event.title, event_path(event) %></h4>
           <h4><small><%= l event.datetime, format: :short %></small></h4>
           <div class="buffer-both event-address"><%= event.address %></div>
         </div>

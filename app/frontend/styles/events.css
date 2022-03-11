@@ -57,12 +57,22 @@
 }
 
 /* Сокрытие и размытие части объемного текста, фиксация высоты блока с адресом */
-.event-address {
+.event-description .event-address {
   height: 70px;
   overflow: hidden;
   color: transparent;
   -webkit-background-clip: text;
   background-image: linear-gradient(to bottom, lightgray, lightgray, rgba(0, 0, 0, 0));
+}
+
+.event-description .event-title {
+  height: 60px;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /*.testR {*/
