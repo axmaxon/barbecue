@@ -51,19 +51,17 @@
 
       <div class="col-lg-10 p-0">
         <nav class="navbar navbar-expand-sm navbar-light bg-light pb-3 pt-3 pl-0 pr-0 mb-3">
-          <%=link_to image_pack_tag("media/images/kebab.png", class: "d-inline-block align-top navbar-brand-image mr-2"), root_path, class: "navbar-brand"%>
+          <%=link_to image_pack_tag("media/images/kebab.png", class: "d-inline-block align-top navbar-brand-image mr-2 ml-2 mt-1"), root_path, class: "navbar-brand"%>
           <%= link_to t('app.name'), root_path, class: 'navbar-brand' %>
 
           <div class="collapse navbar-collapse d-sm-flex" id="navbarNav">
-            <ul class="navbar-nav ml-sm-auto">
+            <ul class="navbar-nav ml-sm-auto mr-2">
               <% if user_signed_in? %>
-                <li class="nav-item nav-link"><%= link_to current_user.name, current_user %></li>
-                <li class="nav-item nav-link"><%= link_to t('devise.sessions.new.log_out'), destroy_user_session_path,
-                                method: :delete %></li>
+                <li class="nav-item nav-link"><%= link_to current_user.name, current_user, class: "common-link" %></li>
+                <li class="nav-item nav-link"><%= link_to t('devise.sessions.new.log_out'), destroy_user_session_path, class: "common-link", method: :delete %></li>
               <% else %>
-                <li class="nav-item nav-link"><%= link_to t('devise.sessions.new.sign_in'), new_user_session_path %></li>
-                <li class="nav-item nav-link"><%= link_to t('devise.registrations.new.sign_up'),
-                                new_user_registration_path %></li>
+                <li class="nav-item nav-link"><%= link_to t('devise.sessions.new.sign_in'), new_user_session_path, class: "common-link" %></li>
+                <li class="nav-item nav-link"><%= link_to t('devise.registrations.new.sign_up'), new_user_registration_path, class: "common-link" %></li>
               <% end %>
             </ul>
           </div>

@@ -3,17 +3,17 @@
 @import 'datepicker.min';
 @import 'events';
 @import '~ekko-lightbox';
-/* Buffers */
-.navbar-light .navbar-brand{
+
+.navbar-light .navbar-brand {
   color: #f60000;
-  font-size: x-large;
+  font-size: 40px;
   text-decoration: underline dotted #17a2b8;
   font-weight: bold;
-};
+}
 
 .navbar-brand-image{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 .buffer-top {
@@ -77,10 +77,16 @@
 .edit-delete-event-buttons {
   width: 50%;
 }
+
 .comment {
   border-bottom: 1px solid lightgray;
 
 }
+
 a .link-to-destroy {
   color: green;
+}
+
+.user-name, .common-link {
+  color: #17a2b8;
 }

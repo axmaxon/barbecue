@@ -9,8 +9,9 @@
     <%= link_to(
           fa_icon('times'),
           event_subscription_path(subscription.event, subscription),
+          class: "common-link",
           method: :delete,
-          data: {confirm: t('.destroy_confirm')}
+          data: { confirm: t('.destroy_confirm') }
         ) %>
   <% end %>
 </div>
