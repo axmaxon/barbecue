@@ -25,8 +25,8 @@
 - Файлы: `carrierwave`, `rmagic`, `Amazon web services S3`
 - СУБД в продакшн-окружении: `PostgresQL`
 - Локализация: `rails-I18n`
-- Приложение также [развернуто](https://bbq-tomorrow.ru) на `Amazon web services EC2`: `Ubuntu 20.04`,
-`nginx`,`Phusion Passenger` через `Capistrano` 
+- Приложение [развернуто](https://bbq-tomorrow.ru) на vps (`Ubuntu 20.04`,
+`nginx`,`Phusion Passenger`, через `Capistrano`)
 
 ### Для локального запуска:
 
