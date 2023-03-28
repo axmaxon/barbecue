@@ -1,4 +1,6 @@
 module ApplicationHelper
+  RECAPTCHA_V3_API_KEY = Rails.application.credentials.google_recaptcha[:api_key]
+
   def bootstrap_class_for(flash_type)
     {
       success: 'alert-success',
@@ -60,5 +62,24 @@ module ApplicationHelper
 
   def fa_icon(icon_class)
     tag.span('', class: "fa fa-#{icon_class}")
+  end
+
+  def include_recaptcha_js
+    raw %Q{ <script src="https://www.google.com/recaptcha/api.js?render=#{RECAPTCHA_V3_API_KEY}"></script> }
+  end
+
+  def recaptcha_execute(action)
+    id = "recaptcha_token_#{SecureRandom.hex(10)}"
+
+    raw %Q{
+      <input name="recaptcha_token" type="hidden" id="#{id}"/>
+      <script>
+        grecaptcha.ready(function() {
+          grecaptcha.execute('#{RECAPTCHA_V3_API_KEY}', {action: '#{action}'}).then(function(token) {
+            document.getElementById("#{id}").value = token;
+          });
+        });
+      </script>
+    }
   end
 end

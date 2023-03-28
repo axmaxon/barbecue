@@ -6,6 +6,10 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:destroy]
 
   def create
+    unless verify_recaptcha?(params[:recaptcha_token], 'checkout')
+      return redirect_to event_path(@event.id), alert: I18n.t('controllers.subscriptions.you_look_like_a_bot')
+    end
+
     # Болванка для новой подписки
     @new_subscription = @event.subscriptions.build(subscription_params)
     @new_subscription.user = current_user

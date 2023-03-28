@@ -4,6 +4,10 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
+    unless verify_recaptcha?(params[:recaptcha_token], 'checkout')
+      return redirect_to event_path(@event.id), alert: I18n.t('controllers.comments.you_look_like_a_bot')
+    end
+
     # Создаём объект @new_comment из @event
     @new_comment = @event.comments.build(comment_params)
     # Проставляем пользователя, если он задан

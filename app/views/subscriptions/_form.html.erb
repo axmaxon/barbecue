@@ -15,5 +15,7 @@
     <% end %>
 
     <%= f.submit t('subscriptions.subscription.subscribe'), class: 'btn btn-info float-md-right' %>
+
+    <%= recaptcha_execute('checkout') %>
   <% end %>
 </div>

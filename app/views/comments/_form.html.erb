@@ -18,4 +18,6 @@
       <%= f.submit t('comments.comment.send'), class: 'btn btn-info' %>
     </div>
   </div>
+
+  <%= recaptcha_execute('checkout') %>
 <% end %>

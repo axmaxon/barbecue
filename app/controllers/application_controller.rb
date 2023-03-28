@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  # recaptcha v3 возвращает оценку по шкале от 0 (точно бот) до 1 (точно человек)
+  # в данной переменной устанавливается приемлемый уровень успешного прохождения верификации
+  RECAPTCHA_MINIMUM_SCORE = 0.5
   # Настройка для работы Девайза, когда юзер правит профиль
   # Если в данный момент выполняется девайсовский контроллер разрешаем параметры
   # для обновления регистрации пользователя (то же что делаем в каждом контроллере, но
@@ -10,6 +13,17 @@ class ApplicationController < ActionController::Base
 
   # Хелпер будет доступен во всех вьюхах
   helper_method :current_user_can_edit?
+
+  # Отправляет запрос на подтверждение на Google reCaptcha api
+  def verify_recaptcha?(token, recaptcha_action)
+    require 'net/https'
+    secret_key = Rails.application.credentials.google_recaptcha[:secret_key]
+
+    uri = URI.parse("https://www.google.com/recaptcha/api/siteverify?secret=#{secret_key}&response=#{token}")
+    response = Net::HTTP.get_response(uri)
+    json = JSON.parse(response.body)
+    json['success'] && json['score'] > RECAPTCHA_MINIMUM_SCORE && json['action'] == recaptcha_action
+  end
 
   # Настройка для девайза — разрешаем обновлять профиль, но обрезаем
   # параметры, связанные со сменой пароля.
